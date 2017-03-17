@@ -21,14 +21,15 @@ public class JerseyHelloResource {
 
     @POST
     @Path("/{type}/endpoint")
+    @Consumes(value = {MediaType.APPLICATION_XML})
     @Produces(value = {MediaType.APPLICATION_XML})
-    public MessageType process(@PathParam("type") String type) {
-        System.out.println(String.format("[POST] %s/endpoint: ", type));
-        MessageType messageType = new MessageType();
-        messageType.setType(type);
-        messageType.setContent("stub");
+    public MessageType process(@PathParam("type") String type, MessageType inMessageType) {
+        System.out.println(String.format("[POST] %s/endpoint: %s", type, inMessageType.getContent()));
+        MessageType outMessageType = new MessageType();
+        outMessageType.setType(type);
+        outMessageType.setContent(inMessageType.getContent());
 
-        return messageType;
+        return outMessageType;
     }
 
 }
