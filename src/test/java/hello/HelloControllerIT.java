@@ -5,6 +5,9 @@ import static org.junit.Assert.assertThat;
 
 import java.net.URL;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import hello.xml.MessageType;
 import org.glassfish.jersey.client.JerseyWebTarget;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,36 +48,6 @@ public class HelloControllerIT {
         ResponseEntity<String> response = template.getForEntity(base.toString(),
                 String.class);
         assertThat(response.getBody(), equalTo("Greetings from Spring Boot!"));
-    }
-
-    @Test
-    public void myTest() {
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://localhost:" + port + "/");
-
-        String jsonObject = null;
-        Form form = new Form();
-        form.param("my_param", jsonObject);
-
-        MyDto myDto = target
-                .path("custom_type")
-                .path("custom_subtype")
-                .path("constant")
-                .request(MediaType.APPLICATION_XML)
-                .post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE), MyDto.class);
-    }
-
-    public static class MyDto {
-
-        String value;
-
-        public String getValue() {
-            return value;
-        }
-
-        public void setValue(String value) {
-            this.value = value;
-        }
     }
 
 }
