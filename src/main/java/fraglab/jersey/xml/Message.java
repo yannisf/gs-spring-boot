@@ -7,8 +7,7 @@ import javax.xml.bind.annotation.*;
         "type",
         "content"
 })
-// The annotation @XmlRootElement solves the MessageWriter not found issue!!!
-//@XmlRootElement(name = "message")
+@XmlRootElement(name = "message")
 public class Message {
 
     @XmlElement(required = true)
