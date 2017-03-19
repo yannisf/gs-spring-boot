@@ -4,6 +4,9 @@ This is a sample project to showcase the use of Spring Boot with Jersey. A resou
 ### Endpoints
 All endpoints are deployed under `/api/message`
 
+### Filters
+Sample request filters are registered. One of them concatenates the properties of the `message` and creates an HMAC that is then set as attribute.
+
 ### Build and run
 
     $ mvn clean package -Dmaven.test.skip

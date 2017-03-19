@@ -11,6 +11,8 @@ public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig() {
         register(MessageResource.class);
+        register(PoweredByResponseFilter.class);
+        register(SignEntityResponseFilter.class);
     }
 
 }
