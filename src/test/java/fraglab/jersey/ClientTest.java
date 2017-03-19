@@ -1,9 +1,9 @@
-package hello;
+package fraglab.jersey;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hello.dto.MyDto;
-import hello.xml.MessageType;
+import fraglab.jersey.dto.RequestDto;
+import fraglab.jersey.xml.Message;
 import org.junit.Test;
 
 import javax.ws.rs.client.Client;
@@ -20,22 +20,22 @@ public class ClientTest {
     @Test
     public void myTest() throws JsonProcessingException {
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://localhost:8080/jersey");
+        WebTarget target = client.target("http://localhost:8080/api").path("message");
 
-        MyDto myDto = new MyDto("Some value & is > 5");
+        RequestDto requestDto = new RequestDto("Some value & is > 5");
         ObjectMapper objectMapper = new ObjectMapper();
-        String jsonObject = objectMapper.writeValueAsString(myDto);
+        String jsonObject = objectMapper.writeValueAsString(requestDto);
         Form form = new Form();
-        form.param("my_param", jsonObject);
+        form.param("p", jsonObject);
 
-        MessageType messageType = target
+        Message message = target
                 .path("custom_type")
                 .path("custom_subtype")
-                .path("constant")
+                .path("endpoint")
                 .request(MediaType.APPLICATION_XML)
-                .post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE), MessageType.class);
+                .post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE), Message.class);
 
-        System.out.println(messageType);
+        System.out.println(message);
     }
 
 }

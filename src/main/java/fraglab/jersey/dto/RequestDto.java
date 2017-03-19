@@ -1,13 +1,13 @@
-package hello.dto;
+package fraglab.jersey.dto;
 
-public class MyDto {
+public class RequestDto {
 
     String value;
 
-    public MyDto() {
+    public RequestDto() {
     }
 
-    public MyDto(String value) {
+    public RequestDto(String value) {
         this.value = value;
     }
 

@@ -1,0 +1,88 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Spring Boot + Jersey",
+		"_postman_id": "a8281320-9e34-27ea-d68b-7d15d107af8d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Simple GET",
+			"request": {
+				"url": "http://localhost:8080/api/message?p=my value",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST an XML, receive an XML",
+			"request": {
+				"url": "http://localhost:8080/api/message/my_type/endpoint",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<message>\n\t<type>inner_type</type>\n\t<content>my custom content</content>\n</message>"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST a form with JSON param, receive an XML",
+			"request": {
+				"url": "http://localhost:8080/api/message/my_type/my_subtype/endpoint",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "p",
+							"value": "{\"value\": \"custom param value\"}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
